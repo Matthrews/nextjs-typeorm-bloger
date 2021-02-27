@@ -7,8 +7,8 @@ import {
     PrimaryGeneratedColumn,
     Timestamp
 } from 'typeorm';
-import {Post} from './Post';
-import {Comment} from './Comment';
+import { Post } from './Post';
+import { Comment } from './Comment';
 // import getDatabaseConnection from 'lib/getDatabaseConnection';
 import _ from 'lodash';
 import md5 from 'md5';
@@ -61,12 +61,12 @@ export class User {
         if (this.username.trim().length < 4) {
             this.errors.username.push('用户名太短！');
         }
-        // // Entity里连接数据库可能会存在问题
-        // const connection = await getDatabaseConnection();
-        // const found = await connection.manager.findOne(User, {username: this.username});
-        // if (found) {
-        //     this.errors.username.push('用户名已存在！');
-        // }
+        // Entity里连接数据库可能会存在问题
+        //const connection = await getDatabaseConnection();
+        //const found = await connection.manager.findOne(User, {username: this.username});
+        //if (found) {
+        //    this.errors.username.push('用户名已存在！');
+        //}
         if (this.password === '') {
             this.errors.password.push('密码不能为空！');
         }
