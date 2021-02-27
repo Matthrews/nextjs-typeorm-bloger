@@ -1,4 +1,11 @@
+---
+title: 简易博客系统开发详细文档
+tag: nextjs typeorm
+date: 2021年2月1日
+---
+
 #### 必要条件
+
  - Next.js
  - TypeORM
  - TS/Babel
@@ -208,6 +215,7 @@
    - 编译项目：yarn build
    - 开启数据库
    - 测试生产环境：yarn start
+   
  ##### Docker化
    - Building your image: docker build -t rfzhu/node-web-app .
    - Run the image: docker run -p 3000:3000 -d rfzhu/node-web-app
@@ -217,9 +225,11 @@
    - Enter the container: docker exec -it <container id> /bin/bash
    - Test: curl -i localhost:3000
    - Restart: docker start -a <container id> 
+   
  ##### Docker化之后，遇到EADDRINUSE的问题
    -修改ormconfig.json中的host解决
    - host设置为localhost是docker中的localhost，应该设置为本机ip，因为docker实际上也是通过WSL运行在本机上的
+   
  ##### 购买阿里云服务器
    - 购买
    - 登录
@@ -297,7 +307,8 @@
     - 将.env.local内容拷过来
     - 查看下内容：cat .env.local
   - Building your image: docker build -t rfzhu/node-web-app .
-  - Run the image: docker run -p 3000:3000 -d rfzhu/node-web-app
+  - Run the image: docker run --network=host -p 3000:3000 -d rfzhu/node-web-app
+  - --network=host特别重要
   - Get container ID: $ docker ps -a
   - Print app output: $ docker logs <container id>
   - Example: Running on http://localhost:3000
