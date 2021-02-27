@@ -297,7 +297,8 @@
     - 将.env.local内容拷过来
     - 查看下内容：cat .env.local
   - Building your image: docker build -t rfzhu/node-web-app .
-  - Run the image: docker run -p 3000:3000 -d rfzhu/node-web-app
+  - Run the image: docker run --network=host -p 3000:3000 -d rfzhu/node-web-app
+  - --network=host特别重要
   - Get container ID: $ docker ps -a
   - Print app output: $ docker logs <container id>
   - Example: Running on http://localhost:3000
