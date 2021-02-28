@@ -342,6 +342,14 @@ date: 2021年2月1日
  - 自动化部署脚本
 ##### 自动化部署
  - ssh 远程执行脚本
+   - 测试本地执行远程脚本：
+     - 让脚本有可执行权限：chmod +x deploy.sh
+     - 执行脚本：ssh bloger@bloger_dev 'sh /home/bloger/app/nextjs-typeorm-bloger/bin/deploy.sh' 测试成功
+     - 删除nextjs-typeorm-bloger目录，这个本不该创建：
+       - 到app下：`mv -f nextjs-typeorm-bloger/* ./` 
+       - 回车然后在执行：`mv -f nextjs-typeorm-bloger/.* ./` 把.开头的文件移过来
+       - 删除`nextjs-typeorm-bloger`目录：`rm -rf nextjs-typeorm-bloger`
+     
  - 添加 yarn m:run，并解决 TypeORM 的 bug
  - nginx 怎么用？
  - 纠错：--network=host 会导致端口映射失效，端口直接就是阿里云机器的端口，但这种模式比较容易理解

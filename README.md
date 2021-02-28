@@ -15,6 +15,11 @@ http://8.130.29.92:3000
  - TypeORM
  - TS/Babel
  - Cypress
+ 
+#### 部署
+```bash
+    ssh bloger@bloger_dev 'sh /home/bloger/app/bin/deploy.sh'
+```
 
 #### 详细文档
  - docs/note.md
