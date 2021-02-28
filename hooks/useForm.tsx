@@ -10,6 +10,7 @@ type FormField<T> = {
     label: string;
     type: 'text' | 'password' | 'textarea';
     key: keyof T;
+    className?: string;
 }
 /**
  * useForm options
@@ -70,14 +71,15 @@ export function useForm<T>(options: useFormOptions<T>) {
 
     const form = <form onSubmit={_onSubmit}>
         {
-            fields.map(({key, label, type}, index) => <div key={index}>
-                <label>{label}{
-                    type === 'textarea' ?
-                        <textarea value={formData[key].toString()}
-                                  onChange={(e) => onChange(key, e)}/> :
-                        <input type={type} value={formData[key].toString()}
-                               onChange={(e) => onChange(key, e)}/>
-                }</label>
+            fields.map(({key, label, type, className}, index) => <div key={index} className={className}>
+                <label><span>{label}</span>
+                    {
+                        type === 'textarea' ?
+                            <textarea value={formData[key].toString()}
+                                      onChange={(e) => onChange(key, e)}/> :
+                            <input type={type} value={formData[key].toString()}
+                                   onChange={(e) => onChange(key, e)}/>
+                    }</label>
                 {errors[key]?.length > 0 && <div>{errors[key].join('\n')}</div>}
             </div>)
         }

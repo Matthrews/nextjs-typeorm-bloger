@@ -4,7 +4,7 @@
   "port": 5432,
   "username": "bloger",
   "password": "bloger",
-  "database": "bloger_prod",
+  "database": "bloger_dev",
   "synchronize": false,
   "logging": false,
   "entities": [
