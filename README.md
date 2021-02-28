@@ -18,7 +18,10 @@ http://8.130.29.92:3000
  
 #### 部署
 ```bash
+    # 执行远程脚本
     ssh bloger@bloger_dev 'sh /home/bloger/app/bin/deploy.sh'
+    # 或者直接发送并执行本地脚本
+    ssh bloger@bloger_dev 'bash -s' < /home/bloger/app/bin/deploy.sh
 ```
 
 #### 详细文档
