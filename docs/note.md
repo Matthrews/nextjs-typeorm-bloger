@@ -349,9 +349,27 @@ date: 2021年2月1日
        - 到app下：`mv -f nextjs-typeorm-bloger/* ./` 
        - 回车然后在执行：`mv -f nextjs-typeorm-bloger/.* ./` 把.开头的文件移过来
        - 删除`nextjs-typeorm-bloger`目录：`rm -rf nextjs-typeorm-bloger`
-     
  - 添加 yarn m:run，并解决 TypeORM 的 bug
- - nginx 怎么用？
+   - 使用patch方案
+   ```git
+    git apply migrate.patch;
+    yarn compile &&
+    yarn m:run &&
+    git reset --hard HEAD &&
+  ```
+ 
+ - 如何使用nginx静态代理？
+  - 使用node-app处理api请求
+  - 使用ngix处理静态请求(html/css等)
+  - 最终实现动静分离，nginx好处：
+    - 动静分离，nginx处理静态文件比node快
+    - 负载均衡（多容器的时候）
+  - nginx下载并运行：
+    ```bash 
+    docker run --name bloger-nginx --network=host -v /home/bloger/nginx.conf:/etc/nginx/conf.d/default.conf -v /home/
+    bloger/app/.next/static/:/usr/share/nginx/html/_next/static/ -d nginx:1.19.7
+    ```
+  - 检验：浏览器地址栏输入：bloger_dev:80
  - 纠错：--network=host 会导致端口映射失效，端口直接就是阿里云机器的端口，但这种模式比较容易理解
  
  
