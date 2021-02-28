@@ -314,6 +314,7 @@ date: 2021年2月1日
   - Example: Running on http://localhost:3000
   - Enter the container: docker exec -it <container id> /bin/bash
   - Test: curl -i localhost:3000
+  - Prune stopped or dangling containers: docker system prune
  ##### 阿里云上创建数据库和表
    - 创建数据库和之前的相同
    - 修改ormconfig的host和database为:
@@ -325,5 +326,35 @@ date: 2021年2月1日
   - 前提：此时你开启`yarn start`，应该可以在阿里云上`curl -iL http://localhost:3000`成功了
   - 将`3000`端口添加到安全组，如此浏览器就可以访问了
 
-
 #### 细节优化
+ - 页面美化
+ - 新增博客修改和删除功能
+ - 重新手动部署
+ 
+#### Nginx自动化部署 
+
+##### 重新部署应用
+ - 开启服务器
+ - 开启 psql 容器 docker start xxx
+ - 更新代码 git stash; git pull; git stash pop; yarn build
+ - 构建 app 容器 docker build
+ - 开启 app 容器 docker run
+ - 自动化部署脚本
+##### 自动化部署
+ - ssh 远程执行脚本
+ - 添加 yarn m:run，并解决 TypeORM 的 bug
+ - nginx 怎么用？
+ - 纠错：--network=host 会导致端口映射失效，端口直接就是阿里云机器的端口，但这种模式比较容易理解
+ 
+ 
+ ##### 常见问题
+  - 问题：`yarn install` 之后 `yarn dev` 的发现 `babel not fund`
+  - 解答：`yarn install` 不会安装 `devDependencies` ，要用 `yarn install --production=false` 安装
+  - 此外建议换下淘宝源：`npm config set registry https://registry.npm.taobao.org`
+  - 问题：Cannot find module '@babel/plugin-proposal-decorators'
+  - 解决：babel-loader和@babel/core版本不对应所产生的
+       - babel-loader 8.x对应@babel/core 7.x
+       - babel-loader 7.x对应@babel/core 6.x
+  - 问题：Error: listen EADDRINUSE: address already in use 0.0.0.0:3000
+  - 解决：docker 的 3000 端口在运行，所以我们的 yarn start 运行不了，先关了,然后 docker build, docker run
+
