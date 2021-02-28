@@ -1,6 +1,7 @@
-# test
-echo Hello World! >/tmp/frank &&
+#!/bin/bash
 
+# test
+echo 'Start deploying......' &&
   # start psql docker
   docker start 87707f02cac5 &&
 
