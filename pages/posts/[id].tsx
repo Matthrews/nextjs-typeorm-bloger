@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import React, {useCallback} from 'react';
 
 import {GetServerSideProps, NextPage, GetServerSidePropsContext} from 'next';
 import getDatabaseConnection from 'lib/getDatabaseConnection';
@@ -8,8 +8,10 @@ import matter from 'gray-matter';
 import marked from 'marked';
 import 'github-markdown-css/github-markdown.css';
 import Link from 'next/link';
+import {useRouter} from 'next/router';
 import withSession from 'lib/session';
 import {User} from 'src/entity/User';
+import axios from 'axios';
 
 type DetailProps = {
     currentUser: User | null
@@ -18,15 +20,29 @@ type DetailProps = {
 
 const Detail: NextPage<DetailProps> = ({currentUser, post}) => {
     const {id, title, content} = post;
+    const router = useRouter();
+    const onDelete = useCallback(() => {
+        axios.delete(`/api/v2/posts`, {params: {id}}).then((data) => {
+            window.alert('删除成功！');
+            router.push('/posts');
+        }, (reason) => {
+            window.alert('删除失败！');
+        });
+    }, [id]);
     return (
         // SEO不认识div的
         <div className="post-detail">
             <header>
                 <h1>{title}</h1>
                 {
-                    currentUser && <Link href={'/posts/[id]/edit'} as={`/posts/${id}/edit`}>
-                        <button className="button button-action button-pill">编辑文章</button>
-                    </Link>
+                    currentUser && <p>
+                        <Link href={'/posts/[id]/edit'} as={`/posts/${id}/edit`}>
+                            <button className="button button-action button-pill">编辑文章</button>
+                        </Link>
+                        <Link href={'/posts/[id]'} as={`/posts/${id}`}>
+                            <button className="button button-action button-pill" onClick={onDelete}>删除文章</button>
+                        </Link>
+                    </p>
                 }
             </header>
             {/* 将string转成html内嵌*/}
