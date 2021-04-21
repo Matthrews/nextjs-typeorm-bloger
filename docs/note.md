@@ -1,7 +1,10 @@
 ---
 title: 简易博客系统开发详细文档
+
 tag: nextjs typeorm
+
 date: 2021年2月1日
+
 ---
 
 #### 必要条件
@@ -49,9 +52,7 @@ date: 2021年2月1日
 
 ##### 创建表
  - 创建三个表
-   1. 创建数据库：`docker run --name psql-blog -v blog-data:/var/lib/postgresql/data 
-               -p 5432:5432 -e POSTGRES_USER=bloger
-               -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres`
+   1. 创建数据库：`docker run --name psql-blog -v blog-data:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=bloger -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres`
    2. 启动数据库：`docker exec -it psql-blog bash`
    
    3. 查看让其运行状态： `docker ps -a`

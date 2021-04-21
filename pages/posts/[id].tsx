@@ -33,7 +33,8 @@ const Detail: NextPage<DetailProps> = ({currentUser, post}) => {
         // SEO不认识div的
         <div className="post-detail">
             <header>
-                <h1>{title}</h1>
+                {/*<h1>{title}</h1>*/}
+                <h1/>
                 {
                     currentUser && <p>
                         <Link href={'/posts/[id]/edit'} as={`/posts/${id}/edit`}>
@@ -48,19 +49,19 @@ const Detail: NextPage<DetailProps> = ({currentUser, post}) => {
             {/* 将string转成html内嵌*/}
             <article className="markdown-body" dangerouslySetInnerHTML={{__html: content}}/>
             <style jsx>{`
+              .markdown-body {
+                box-sizing: border-box;
+                min-width: 200px;
+                max-width: 980px;
+                margin: 0 auto;
+                padding: 45px;
+              }
+
+              @media (max-width: 767px) {
                 .markdown-body {
-                     box-sizing: border-box;
-                     min-width: 200px;
-                     max-width: 980px;
-                     margin: 0 auto;
-                     padding: 45px;
+                  padding: 15px;
                 }
-                
-                @media (max-width: 767px) {
-                     .markdown-body {
-                        padding: 15px;
-                     }
-                }
+              }
             `}</style>
         </div>
     );

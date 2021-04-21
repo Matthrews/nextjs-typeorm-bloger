@@ -77,7 +77,7 @@ export function useForm<T>(options: useFormOptions<T>) {
                         type === 'textarea' ?
                             <textarea value={formData[key].toString()}
                                       onChange={(e) => onChange(key, e)}/> :
-                            <input type={type} value={formData[key].toString()}
+                            <input type={type} autoComplete="on" value={formData[key].toString()}
                                    onChange={(e) => onChange(key, e)}/>
                     }</label>
                 {errors[key]?.length > 0 && <div>{errors[key].join('\n')}</div>}
