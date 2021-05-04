@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # test
-echo 'Start deploying......' &&
-  # start psql docker
-  docker start 87707f02cac5 &&
+echo 'Start deploying......'
+
+# start psql docker
+docker start 8770 &&
 
   # pull latest source code from github
   cd /home/bloger/app &&
