@@ -33,12 +33,8 @@ const Detail: NextPage<DetailProps> = ({currentUser, post}) => {
         // SEO不认识div的
         <div className="post-detail">
             <header>
-<<<<<<< HEAD
                 <h1></h1>
-=======
                 {/*<h1>{title}</h1>*/}
-                <h1/>
->>>>>>> 9b279abe99142abee97efed7691d45570f5b7b08
                 {
                     currentUser && <p>
                         <Link href={'/posts/[id]/edit'} as={`/posts/${id}/edit`}>
