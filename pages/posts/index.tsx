@@ -18,7 +18,7 @@ type PostProps = {
     currentUser: User | null
 };
 
-const PAGE_SIZE = 2;
+const PAGE_SIZE = 5;
 
 
 const Posts: NextPage<PostProps> = ({currentUser, posts, count, page, totalPage}) => {

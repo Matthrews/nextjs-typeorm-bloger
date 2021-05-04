@@ -17,5 +17,5 @@ echo 'Start deploying......' &&
   docker build -t rfzhu/node-web-app . &&
   docker kill app &&
   docker rm app &&
-  docker run ---name app -network=host -p 3000:3000 -d rfzhu/node-web-app &&
+  docker run --name app --network=host -p 3000:3000 -d rfzhu/node-web-app &&
   echo 'Finished!'
