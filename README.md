@@ -19,6 +19,8 @@ http://8.130.28.152:3000/
 - TS/Babel
 - Cypress
 
+> [benchmark-prisma-vs-typeorm](https://dev.to/josethz00/benchmark-prisma-vs-typeorm-3873)
+
 #### 开发
 
 1. docker 上数据库环境安装测试
